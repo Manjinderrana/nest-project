@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, HttpCode, Param, Get } from '@nestjs/common'
+import { Body, Controller, HttpStatus, Post, HttpCode, Param, Get, Put } from '@nestjs/common'
 import { UserService } from './user.service'
 import { IUser, LoginUserDTO } from 'src/core/interfaces'
 import { CreateUserEntity } from './user.entity'
@@ -23,5 +23,17 @@ export class UserController {
   @Get(':_id')
   async getUser(@Param('_id') _id: string): Promise<IUser> {
     return this.UserService.getUser({_id})
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Put(':id')
+  async updateUser(@Param('id') id: string): Promise<IUser> {
+    return this.UserService.updateUser({ id })
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Put(':id')
+  async deleteUser(@Param('id') id: string) {
+    return this.UserService.deleteUser(id)
   }
 }

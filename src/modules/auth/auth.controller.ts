@@ -36,16 +36,4 @@ export class AuthController extends CommonCRUD {
   async getUser(@Param('id') id: string): Promise<IUser> {
     return this.authService.getUser({ id })
   }
-
-  @HttpCode(HttpStatus.OK)
-  @Put(':id')
-  async updateUser(@Param('id') id: string): Promise<IUser> {
-    return this.authService.updateUser({ id })
-  }
-
-  @HttpCode(HttpStatus.OK)
-  @Put(':id')
-  async deleteUser(@Param('id') id: string) {
-    return this.authService.deleteUser(id)
-  }
 }

@@ -88,4 +88,43 @@ export class UserService {
       throw new InternalServerErrorException(error?.message)
     }
   }
+
+  async updateUser(data: Partial<IUser>): Promise<any> {
+    try {
+      const { username, email } = data
+
+      if (!username || !email) {
+        throw new BadRequestException('Please provide necessary data')
+      }
+
+      const updatedUser = await this.userModel.updateOne({ email, username })
+
+      if (!updatedUser) {
+        throw new BadRequestException('Error while updating user data')
+      }
+
+      return updatedUser
+
+    } catch (error) {
+      throw new BadRequestException(error?.message)
+    }
+  }
+
+  async deleteUser(id: string): Promise<any> {
+    try {
+      if (!id) {
+        throw new BadRequestException('UserId is required')
+      }
+
+      const user = await this.userModel.findByIdAndDelete({ id })
+
+      if (!user) {
+        throw new NotFoundException('User not found')
+      }
+
+      return user
+    } catch (error) {
+      throw new BadRequestException(error?.message)
+    }
+  }
 }
