@@ -1,10 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator'
+import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator'
 
 export class CreateUserEntity {
   @IsString()
-  @MaxLength(30)
+  @MinLength(3)
   @IsNotEmpty()
-  username: string
+  message: string
 
   @IsEmail()
   @IsNotEmpty()

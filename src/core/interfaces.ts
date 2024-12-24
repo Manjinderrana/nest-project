@@ -13,6 +13,19 @@ export declare class LoginUserDTO {
   password: string
 }
 
+export interface INotifications {
+  _id: string | ObjectId
+  message: string
+  type: string
+  userId: string | ObjectId
+}
+
+export interface createNotification {
+  message: string
+  type: string
+  userId: string | ObjectId
+}
+
 export interface CreateUser {
   _id: string
   username: string
